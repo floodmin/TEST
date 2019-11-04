@@ -21,7 +21,7 @@
         <input type="text" class="form-control" id="writer" name="writer" placeholder="who are you?">
       </div>
       <div class="form-group">
-        <label for=content">content</label>
+        <label for="content">content</label>
         <textarea class="form-control" id="content" name="content" rows="3" placeholder="내용을 입력하세요."></textarea>
       </div>
       <button type="submit" class="btn btn-primary">SUBMIT</button>
