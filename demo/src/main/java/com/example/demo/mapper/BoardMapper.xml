@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.example.demo.mapper.BoardMapper">
+ <select id="boardCount" resultType="com.example.demo.bean.BoardData">
+    	SELECT
+    	COUNT(*)
+    	FROM BOARD
+    </select>
+    
+    <select id="boardList" resultType="com.example.demo.bean.BoardData">
+    	SELECT
+    		*
+    	FROM BOARD
+    	
+    	ORDER BY BOARDNUM DESC
+    </select>
+    
+    <select id="boardDetail" parameterType="int" resultType="com.example.demo.bean.BoardData">
+    	SELECT
+    		*
+    	FROM
+    	 BOARD
+    	WHERE
+    	 BOARDNUM = #{boardNum}
+    </select>
+    
+    <insert id="boardInsert" parameterType="com.example.demo.bean.BoardData">
+    	INSERT INTO
+    	BOARD (SUBJECT, CONTENT, WRITER, created_date)
+    	VALUES(#{subject},#{content},#{writer}, now())
+    </insert>
+    
+    <update id = "boardUpdate" parameterType="com.example.demo.bean.BoardData">
+    	UPDATE
+    		SET
+    		<if test = "subject != null ">
+    			SUBJECT = #{subject}
+    		</if>
+    		<if test = "subject != null and content != null" > , </if>
+    		<if test = "content != null">
+    			CONTENT = #{content}
+    		</if>
+    		WHERE BOARDNUM = #{boardNum}
+    </update>
+    
+    <delete id = "boardDelete" parameterType="int">
+    	DELETE FROM BOARD WHERE BOARDNUM = #{boardNum}
+    </delete>
+    
+    
+</mapper>	
